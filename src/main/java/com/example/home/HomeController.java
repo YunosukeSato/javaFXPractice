@@ -68,11 +68,12 @@ public class HomeController implements Initializable{
         this.loadEmployeeData();
         this.clearFields(null);
     }
-    
+
     //delete employee
     @FXML
-    private void deleteEmployee(ActionEvent event) {
-        homeModel.deleteEmployee(this.name.getText(), this.department.getText());
+    private void deleteEmployee(ActionEvent event){
+        EmployeeData employee = employeeDataTableView.getSelectionModel().getSelectedItem();;
+        homeModel.deleteEmployee(employee.idProperty().getValue());
         this.loadEmployeeData();
         this.clearFields(null);
     }

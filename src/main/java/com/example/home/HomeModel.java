@@ -100,25 +100,25 @@ public class HomeModel {
 
   }
 
-  public void deleteEmployee(String name, String department) {
-    String query = "DELETE FROM employees_tbl WHERE name = ? AND department = ?";
+  public void deleteEmployee(String id){
+    String query = "DELETE FROM employees_tbl WHERE id = ?;";
     PreparedStatement statement = null;
 
     try {
-      statement = conn.prepareStatement(query);
+        statement = conn.prepareStatement(query);
 
-      statement.setString(1, name);
-      statement.setString(2, department);
+        statement.setInt(1, Integer.parseInt(id));
 
-      statement.executeUpdate();
-    } catch (SQLException e) {
-      e.printStackTrace();
-    } finally {
-      try {
-        statement.close();
+        statement.executeUpdate();
+
     } catch (SQLException e) {
         e.printStackTrace();
-    }
+    } finally {
+        try {
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
   }
 
