@@ -56,6 +56,7 @@ public class LoginController implements Initializable{
             homePage();
         }else{
             this.loginStatus.setText("Wrong Credentials");
+            this.clearFields(null);
         }
     }
 
@@ -77,7 +78,12 @@ public class LoginController implements Initializable{
 
     @FXML
     private void signUp(ActionEvent event){
-        loginModel.addUser(this.username.getText(), this.password.getText());
+        if(loginModel.isExist(this.username.getText()) != false) {
+            this.loginStatus.setText("This username is already exist");
+        } else {
+            loginModel.addUser(this.username.getText(), this.password.getText());
+            this.loginStatus.setText("Sign up succeeded");
+        }
         this.clearFields(null);
     }
 

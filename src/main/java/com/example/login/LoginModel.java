@@ -73,5 +73,30 @@ public class LoginModel {
         }
         }
       }
+
+      public boolean isExist(String username) {
+        String query = "SELECT * FROM login_tbl WHERE username = ?";
+        PreparedStatement statement = null;
+        ResultSet result = null;
+
+        try {
+            statement = conn.prepareStatement(query);
+
+            statement.setString(1, username);
+
+            result = statement.executeQuery();
+
+            return result.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+      }
     
 }
