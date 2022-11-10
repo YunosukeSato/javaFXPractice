@@ -23,6 +23,7 @@ public class LoginModel {
         return this.conn != null;
     }
 
+    // method to login
     public boolean isLogin(String username, String password){
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -51,6 +52,7 @@ public class LoginModel {
         }
     }
 
+    //  method to add a user
     public void addUser(String username, String password) {
         String query = "INSERT INTO login_tbl (username, password) VALUES (?,?)";
         PreparedStatement statement = null;
@@ -74,6 +76,7 @@ public class LoginModel {
         }
       }
 
+    //   method to check if already exists the same username or not
       public boolean isExist(String username) {
         String query = "SELECT * FROM login_tbl WHERE username = ?";
         PreparedStatement statement = null;
